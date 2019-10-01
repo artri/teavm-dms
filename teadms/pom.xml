@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>teadms-root</artifactId>
+		<groupId>org.teavm.flavour</groupId>
+		<version>0.2.0-SNAPSHOT</version>
+	</parent>
+
+	<groupId>org.fastgrow.teadms</groupId>
+	<artifactId>teadms</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>My Application Parent Module</name>
+
+	<properties>
+		<org.fastgrow.teadms.teadms.version>1.0-SNAPSHOT</org.fastgrow.teadms.teadms.version>
+		<jdk.source.version>1.8</jdk.source.version>
+		<jdk.target.version>1.8</jdk.target.version>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.targetEncoding>UTF-8</project.build.targetEncoding>
+		<project.reporting.inputEncoding>UTF-8</project.reporting.inputEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<maven.javadoc.failOnError>false</maven.javadoc.failOnError>
+		<maven.javadoc.skip>true</maven.javadoc.skip>
+		<!-- Code metric and reporting -->
+		<skip.unit.tests>false</skip.unit.tests>
+		<skip.integration.tests>false</skip.integration.tests>
+		<checkstyle.failOnError>false</checkstyle.failOnError>
+		<findbugs.failOnError>false</findbugs.failOnError>
+
+		<!-- Dependency Versions -->
+		<commons.collections.version>4.4</commons.collections.version>
+		<commons.io.version>2.6</commons.io.version>
+		<commons.lang.version>3.9</commons.lang.version>
+		<commons.pool2.version>2.7.0</commons.pool2.version>
+		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+
+		<org.slf4j.version>1.7.28</org.slf4j.version>
+		<logback.version>1.2.3</logback.version>
+
+		<junit-jupiter.version>5.3.2</junit-jupiter.version>
+		<junit-platform.version>1.5.2</junit-platform.version>
+		<org.hamcrest.version>2.1</org.hamcrest.version>
+		<mockito.version>3.0.0</mockito.version>
+
+		<teavm.version>0.6.0-SNAPSHOT</teavm.version>
+		<flavour.version>0.2.0-SNAPSHOT</flavour.version>
+		<jackson.version>2.9.9.20190807</jackson.version>
+		<jersey.version>2.29</jersey.version>
+
+		<spring.version>5.1.8.RELEASE</spring.version>
+		<spring-data-releasetrain.version>Lovelace-RELEASE</spring-data-releasetrain.version>
+
+		<!-- Plugin Versions -->
+		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+		<maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
+		<maven-war-plugin.version>3.2.3</maven-war-plugin.version>
+	</properties>
+
+	<modules>
+		<module>../teadms.api</module>
+		<module>../teadms.client</module>
+		<module>../teadms.server</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${org.slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jul-to-slf4j</artifactId>
+				<version>${org.slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-collections4</artifactId>
+				<version>${commons.collections.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons.io.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons.lang.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-pool2</artifactId>
+				<version>${commons.pool2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${javax.servlet-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- Test -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- JUnit Jupiter dependencies -->
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-api</artifactId>
+				<version>${junit-jupiter.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-engine</artifactId>
+				<version>${junit-jupiter.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<!-- JUnit platform launcher -->
+			<!-- To be able to run tests from IDE directly -->
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-commons</artifactId>
+				<version>${junit-platform.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-launcher</artifactId>
+				<version>${junit-platform.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-core</artifactId>
+				<version>${mockito.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-junit-jupiter</artifactId>
+				<version>${mockito.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.hamcrest</groupId>
+				<artifactId>hamcrest</artifactId>
+				<version>${org.hamcrest.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- Jersey / Jackson -->
+			<dependency>
+				<groupId>org.glassfish.jersey</groupId>
+				<artifactId>jersey-bom</artifactId>
+				<version>${jersey.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson</groupId>
+				<artifactId>jackson-bom</artifactId>
+				<version>${jackson.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-releasetrain</artifactId>
+				<version>${spring-data-releasetrain.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+
+			<!-- TeaVM Dependencies -->
+			<dependency>
+				<groupId>org.teavm</groupId>
+				<artifactId>teavm-classlib</artifactId>
+				<version>${teavm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.teavm</groupId>
+				<artifactId>teavm-metaprogramming-impl</artifactId>
+				<version>${teavm.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.teavm.flavour</groupId>
+				<artifactId>teavm-flavour-widgets</artifactId>
+				<version>${flavour.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.teavm.flavour</groupId>
+				<artifactId>teavm-flavour-rest</artifactId>
+				<version>${flavour.version}</version>
+			</dependency>
+
+			<!-- Application Dependencies -->
+			<dependency>
+				<groupId>org.fastgrow.teadms</groupId>
+				<artifactId>teadms.api</artifactId>
+				<version>${org.fastgrow.teadms.teadms.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.fastgrow.teadms</groupId>
+				<artifactId>teadms.client</artifactId>
+				<version>${org.fastgrow.teadms.teadms.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.fastgrow.teadms</groupId>
+				<artifactId>teadms.server</artifactId>
+				<version>${org.fastgrow.teadms.teadms.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

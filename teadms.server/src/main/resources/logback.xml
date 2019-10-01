@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <variable scope="context" name="logPattern" value="%d{HH:mm:ss} %5p | %t | %-5level %logger{32} - [%file:%line] - %msg%n" />
+    
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${logPattern}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.base}/logs/teadms.server.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${catalina.base}/logs/teadms.server-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>100</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>${logPattern}</pattern>
+        </layout>
+    </appender>
+
+  <root level="INFO">
+    <appender-ref ref="console" />
+    <appender-ref ref="file" />
+  </root>
+
+  <logger name="org.apache.catalina" level="DEBUG">
+    <appender-ref ref="file" />
+  </logger>
+  <logger name="org.glassfish.jersey" level="DEBUG">
+    <appender-ref ref="file" />
+  </logger>
+  <logger name="org.fastgrow.teadms" level="TRACE">
+    <appender-ref ref="file" />
+  </logger>
+
+  <logger name="org.hibernate.SQL" level="DEBUG">
+    <appender-ref ref="file" />
+  </logger>
+  <logger name="org.hibernate.type" level="TRACE">
+    <appender-ref ref="file" />
+  </logger>
+  <logger name="org.springframework" level="DEBUG">
+    <appender-ref ref="file" />
+  </logger>
+  <logger name="org.quartz" level="WARN">
+    <appender-ref ref="file" />
+  </logger>
+
+</configuration>

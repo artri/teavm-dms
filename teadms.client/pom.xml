@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.fastgrow.teadms</groupId>
+    <artifactId>teadms</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../teadms/pom.xml</relativePath>
+  </parent>
+
+  <artifactId>teadms.client</artifactId>
+  <packaging>war</packaging>
+
+  <name>My Application Client</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.fastgrow.teadms</groupId>
+      <artifactId>teadms.api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.teavm</groupId>
+      <artifactId>teavm-classlib</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.teavm</groupId>
+      <artifactId>teavm-metaprogramming-impl</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.teavm.flavour</groupId>
+      <artifactId>teavm-flavour-widgets</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.teavm.flavour</groupId>
+      <artifactId>teavm-flavour-rest</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven-compiler-plugin.version}</version>
+        <configuration>
+          <source>${jdk.source.version}</source>
+          <target>${jdk.target.version}</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>${maven-war-plugin.version}</version>
+        <configuration>
+          <webResources>
+            <resource>
+              <directory>${project.build.directory}/generated/js</directory>
+            </resource>
+          </webResources>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.teavm</groupId>
+        <artifactId>teavm-maven-plugin</artifactId>
+        <version>${teavm.version}</version>
+        <executions>
+          <execution>
+            <id>web-client</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+            <configuration>
+              <targetDirectory>${project.build.directory}/generated/js/teavm</targetDirectory>
+              <mainClass>org.fastgrow.teadms.client.Client</mainClass>
+              <minifying>true</minifying>
+              <debugInformationGenerated>true</debugInformationGenerated>
+              <sourceMapsGenerated>true</sourceMapsGenerated>
+              <sourceFilesCopied>true</sourceFilesCopied>
+              <optimizationLevel>ADVANCED</optimizationLevel>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  
+</project>
