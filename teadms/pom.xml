@@ -51,8 +51,8 @@
 		<org.hamcrest.version>2.1</org.hamcrest.version>
 		<mockito.version>3.0.0</mockito.version>
 
-		<teavm.version>0.6.0-SNAPSHOT</teavm.version>
-		<flavour.version>0.2.0-SNAPSHOT</flavour.version>
+		<teavm.version>0.6.1</teavm.version>
+		<flavour.version>0.2.1</flavour.version>
 		<jackson.version>2.9.9.20190807</jackson.version>
 		<jersey.version>2.29</jersey.version>
 
@@ -194,6 +194,11 @@
 			</dependency>
 
 			<!-- TeaVM Dependencies -->
+			<dependency>
+				<groupId>org.teavm</groupId>
+				<artifactId>teavm-core</artifactId>
+				<version>${teavm.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.teavm</groupId>
 				<artifactId>teavm-classlib</artifactId>
