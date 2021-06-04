@@ -18,7 +18,7 @@
 
 	<properties>
 		<hibernate.version>5.4.5.Final</hibernate.version>
-		<hibernate-validator.version>6.0.17.Final</hibernate-validator.version>
+		<hibernate-validator.version>6.0.20.Final</hibernate-validator.version>
 		<hsqldb.version>2.5.0</hsqldb.version>
 	</properties>
 
